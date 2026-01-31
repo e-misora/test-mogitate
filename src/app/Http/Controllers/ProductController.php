@@ -14,8 +14,18 @@ class ProductController extends Controller
     }
 
     public function search(Request $request){
-        dd($request);
-        return view('products-search');
+        $query = Product::query();
+        $query = $this->getSearchQuery($request, $query);
+        $products = $query->paginate(6);
+        return view('products-search',compact('products'));
+    }
+
+    private function getSearchQuery($request, $query){
+        $keyword=$request->keyword;
+        if(!empty($request->keyword)) {
+            $query->where('name', 'like', '%' . $keyword . '%');
+        }
+        return $query;
     }
 
     public function create(){

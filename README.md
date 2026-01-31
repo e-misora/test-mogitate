@@ -1,4 +1,3 @@
-# laravel-docker-template
 # mogitate(フリマサイト)
 
 ## 環境構築
@@ -8,10 +7,10 @@
   ターミナルを起動
 
   ```bash
-  git clone git@github.com:e-misora/mogitate.git  
+  git clone git@github.com:e-misora/test-mogitate.git  
   ```
   ```bash
-  cd mogitate
+  cd test-mogitate
   ```
 - docker のビルド 起動  
   ```bash
@@ -26,8 +25,12 @@
   ```
   .env ファイルを編集して必要な値を設定
 
+  12行目
   ```bash:.env
   DB_HOST=mysql
+  ```
+  15行目
+  ```bash
   DB_DATABASE=laravel_db
   DB_USERNAME=laravel_user
   DB_PASSWORD=laravel_pass

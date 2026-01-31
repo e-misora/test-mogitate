@@ -6,13 +6,13 @@
 
 @section('content')
     <div class="content-top">
-        <h2 class="content__outline">"{{$products['name']}}"の商品一覧</h2>
+        <h2 class="content__outline">"{{request('name')}}"の商品一覧</h2>
     </div>
     <div class="content__items">
         <div class="content__items--search">
             <form class="item--search-form" action="/products/search" method="get">
             @csrf
-                <input class="item--search-name__input" type="text" name="keyword" value="{{old('keyword')}}">
+                <input class="item--search-name__input" type="text" name="keyword" value="{{request('name')}}">
                 <input class="item--search-name__submit" type="submit" value="検索">
                 <div class="item--search-price">
                     <p class="item--search-price__tag">価格順で表示</p>
