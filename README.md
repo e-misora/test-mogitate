@@ -64,7 +64,7 @@
   ```bash
   php artisan db:seed
   ```
-- fruits-imgディレクトリをstorage/app/publicに移動
+- fruits-imgディレクトリをpublicからstorage/app/publicに移動
 
 - 画像を表示するためのシンボリックリンクを作成  
   ```bash
