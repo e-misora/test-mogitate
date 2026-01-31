@@ -1,0 +1,25 @@
+body,
+textarea,
+input ,
+a{
+    color: #000;
+}
+
+.header{
+    margin: 0 auto;
+}
+
+.header__logo{
+    margin: 0px;
+    padding: 5px 20px;
+    font-size: 24px;
+    font-family: serif;
+    font-style: italic;
+    font-weight: lighter;
+    color: #f4c703;
+}
+
+.content{
+    background-color: #f8f8f8;
+    margin: 0px auto;
+}
