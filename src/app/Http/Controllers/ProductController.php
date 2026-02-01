@@ -17,6 +17,7 @@ class ProductController extends Controller
         $query = Product::query();
         $query = $this->getSearchQuery($request, $query);
         $products = $query->paginate(6);
+        // dd($products);
         return view('products-search',compact('products'));
     }
 
@@ -33,15 +34,8 @@ class ProductController extends Controller
     }
 
     public function store(ProductRequest $request){
-        $path = $request->file('image')->store('fruits-img','public');
-
-        Product::create([
-            'name' => $request->name,
-            'price' => $request->price,
-            'image' => $path,
-            'description' => $request->description
-        ]);
-
+        $product = $request->only(['name','price','image','description']);
+        Product::create($product);
         return redirect('/products');
     }
 
@@ -51,7 +45,7 @@ class ProductController extends Controller
     }
 
     public function update(ProductRequest $request){
-        $product = $request->all();
+        $product = $request->only(['name','price','image','description']);
         Product::find($request->id)->update($product);
         return redirect('/products');
     }

@@ -7,7 +7,7 @@
 @section('content')
 <div class="products-register__content">
     <h2>商品登録</h2>
-    <form class="products-register__form" action="/products" method="post" enctype="multipart/form-data">
+    <form class="products-register__form" action="/products/register" method="post" enctype="multipart/form-data">
     @csrf
         <div class="products-register__form-group">
             <span class="products-register__form--label">商品名</span>
@@ -22,7 +22,7 @@
         <div class="products-register__form-group">
             <span class="products-register__form--label">値段</span>
             <span class="products-register__form--required">必須</span>
-            <input class="products-register__form--input" type="text" name="price"  placeholder="値段を入力">
+            <input class="products-register__form--input" type="text" name="price"  placeholder="値段を入力" value="{{old('price')}}">
         </div>
         <div class="form-error">
             @error('price')
@@ -52,7 +52,6 @@
         });
         </script>
         </div>
-
         <div class="form-error">
             @error('image')
             {{$message}}
@@ -62,24 +61,26 @@
             <span class="products-register__form--label">季節</span>
             <span class="products-register__form--required">必須</span>
             <div>
-            <input class="products-register__form--radio" type="radio" id="spring" name="season">
-            <label for="spring">春</label>
-            <input class="products-register__form--radio" type="radio" id="summer" name="season">
-            <label for="summer">夏</label>
-            <input class="products-register__form--radio" type="radio" id="autumn" name="season">
-            <label for="autumn">秋</label>
-            <input class="products-register__form--radio" type="radio" id="winter" name="season">
-            <label for="winter">冬</label>
+                <input class="products-register__form--radio" type="radio" id="spring" name="season">
+                <label for="spring">春</label>
+                <input class="products-register__form--radio" type="radio" id="summer" name="season">
+                <label for="summer">夏</label>
+                <input class="products-register__form--radio" type="radio" id="autumn" name="season">
+                <label for="autumn">秋</label>
+                <input class="products-register__form--radio" type="radio" id="winter" name="season">
+                <label for="winter">冬</label>
             </div>
         </div>
         <div class="products-register__form-group">
             <span class="products-register__form--label">商品説明</span>
             <span class="products-register__form--required">必須</span>
-            <textarea name="description" class="products-register__form--input" rows="6" placeholder="商品の説明を入力" ></textarea>
+            <textarea name="description" class="products-register__form--input" rows="6" placeholder="商品の説明を入力" value="{{old('description')}}"></textarea>
         </div>
-        @error('description')
-        {{$message}}
-        @enderror
+        <div class="form-error">
+            @error('description')
+            {{$message}}
+            @enderror
+        </div>
         <div class="products-register__form--button">
             <a class="products-register__form--back" href="/products">戻る</a>
             <button class="products-register__form--submit" type="submit">登録</button>

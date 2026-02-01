@@ -66,8 +66,11 @@
     width: 20%;
 }
 
-
 .form__delete-submit{
     border: none;
+}
+
+.form-error{
+    color: #fb4d4b;
 }
 

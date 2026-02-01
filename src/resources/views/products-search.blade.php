@@ -5,14 +5,15 @@
 @endsection
 
 @section('content')
+    @foreach($products as $product)
     <div class="content-top">
-        <h2 class="content__outline">"{{request('name')}}"の商品一覧</h2>
+        <h2 class="content__outline">"{{$product['name']}}"の商品一覧</h2>
     </div>
     <div class="content__items">
         <div class="content__items--search">
             <form class="item--search-form" action="/products/search" method="get">
             @csrf
-                <input class="item--search-name__input" type="text" name="keyword" value="{{request('name')}}">
+                <input class="item--search-name__input" type="text" name="keyword" value="{{$product['name']}}">
                 <input class="item--search-name__submit" type="submit" value="検索">
                 <div class="item--search-price">
                     <p class="item--search-price__tag">価格順で表示</p>
@@ -28,14 +29,15 @@
             <form class="item--product-card" action="/products/detail" method="post">
             @csrf
                 <button class="link__products-detail" type="submit">
-                <img class="product-card__img" src="" alt="">
-                <input type="hidden" name="image" >
-                <div class="product-card__cap">
-                    <p>{{$products['name']}}</p>
-                    <p>¥{{$products['price']}}</p>
-                </div>
+                    <img class="product-card__img" src="{{asset('storage/'.'fruits-img/'.$product->image)}}" alt="">
+                    <input type="hidden" name="image">
+                    <div class="product-card__cap">
+                        <p>{{$product['name']}}</p>
+                        <p>¥{{$product['price']}}</p>
+                    </div>
                 </button>
             </form>
+    @endforeach
         </div>
     </div>
 </form>

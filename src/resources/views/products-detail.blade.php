@@ -12,7 +12,7 @@
         <span>></span>
         <span>{{$products['name']}}</span>
     </div>
-    <form class="products-update__form" method="post" action="/products">
+    <form class="products-update__form" method="post" action="/product/update">
         @method('PATCH')
         @csrf
         <div class="products-detail__form-inner">
@@ -23,8 +23,18 @@
             <div class="products-detail__form-items">
                 <label for="name">商品名</label>
                 <input class="products-detail__form-input" type="text" id="name" value="{{$products['name']}}">
+                <div class="form-error">
+                    @error('name')
+                    {{$message}}
+                    @enderror
+                </div>
                 <label for="price">値段</label>
                 <input class="products-detail__form-input" type="text" id="price"value="{{$products['price']}}">
+                <div class="form-error">
+                    @error('price')
+                    {{$message}}
+                    @enderror
+                </div>
                 <p>季節</p>
                 <input class="products-detail__form-option--seasons" type="radio" id="spring"><label for="spring">春</label>
                 <input class="products-detail__form-option--seasons" type="radio" id="summer"><label for="summer">夏</label>
@@ -36,19 +46,24 @@
             <label for="description">商品説明</label>
             <textarea class="products-detail__form-textarea" rows="6" name="description" id="description">{{$products['description']}}</textarea>
         </div>
+        <div class="form-error">
+            @error('description')
+            {{$message}}
+            @enderror
+        </div>
         <input type="hidden" name="id" value="{{$products['id']}}">
         <div class="products-detail__form-button">
             <a class="products-detail__form--back" href="/products">戻る</a>
             <button class="products-detail__form--submit">変更を保存</button>
-            </form>
-            <form class="form__products--delete" action="/product/delete" method="post">
+    </form>
+        <form class="form__products--delete" action="/products/delete" method="post">
             @method('DELETE')
             @csrf
-                <button class="form__delete-submit">
-                    <img class="form__delete-button" src="{{asset('icons8-削除-48.png')}}" alt="">
-                    <input type="hidden" name="id" value="{{$products['id']}}">
-                </button>
-            </form>
-        </div>
+            <button class="form__delete-submit">
+                <img class="form__delete-button" src="{{asset('icons8-削除-48.png')}}" alt="">
+                <input type="hidden" name="id" value="{{$products['id']}}">
+            </button>
+        </form>
+    </div>
 </div>
 @endsection
